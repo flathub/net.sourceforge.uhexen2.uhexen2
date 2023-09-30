@@ -13,7 +13,8 @@
        but nothing has been done for Linux since the beginning of 2002.</p>
     <p>The Hammer of Thyrion project is a cross-platform source port effort: We continue the development for Linux, BSD and Mac OS X people,
        with continued support for Windows users as well. Many bugs are fixed and even new features are added: New sound modes, improved
-       mouse handling, improved video modes, OpenGL glows and more. You can go to our project page for more information.</p>
+       mouse handling, improved video modes, OpenGL glows and more.
+       Please visit <a href="uhexen2.sourceforge.net/">the project page</a> for more information.</p>
     <p>Hexen II: Hammer of Thyrion requires a copy of the Hexen II game data to function. Simply copy the game data directory <code>data1</code>
        from a regular copy of Hexen II into <code>~/.var/app/net.sourceforge.uhexen2.uhexen2/.hexen2/</code> - if this is missing, you will
        be reminded when starting Hexen II: Hammer of Thyrion.</p>
