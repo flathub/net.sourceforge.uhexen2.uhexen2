@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component>
+<component type="desktop-application">
   <id>net.sourceforge.uhexen2.uhexen2</id>
   <name>Hexen II: Hammer of Thyrion</name>
   <developer id="uhexen2.sourceforge.net"><name>uHexen2 Contributors</name></developer>
