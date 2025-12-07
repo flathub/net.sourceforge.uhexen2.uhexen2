@@ -1,6 +1,6 @@
 app-id: net.sourceforge.uhexen2.uhexen2
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: uhexen2.sh
 
@@ -20,9 +20,12 @@ cleanup:
   - /lib/*.a
   - /lib/*.la
   - /lib/pkgconfig
+  - /bin/sdl-config
+  - /share/aclocal
+
 
 modules:
-  - shared-modules/SDL2/SDL2-no-libdecor.json
+  # - shared-modules/SDL2/SDL2-no-libdecor.json
   - shared-modules/SDL/sdl12-compat.json
   - shared-modules/libmad/libmad.json
 
@@ -51,12 +54,13 @@ modules:
           # launch the game
           - /app/bin/glhexen2 "$@" -basedir ~/.var/app/net.sourceforge.uhexen2.uhexen2/.hexen2
     buildsystem: simple
+    build-options:
+      env:
+        - CFLAGS=-std=gnu17
     build-commands:
-      # Uncomment this to apply the SDL2 patch
-      # - git apply patches/sdl2.patch
-      - cd engine/hexen2 && make glh2 && make -C server
-      - cd engine/hexenworld && make -C client glhw && make -C server
-      - cd hw_utils/hwmaster && make
+      - cd engine/hexen2 && make -j${FLATPAK_BUILDER_N_JOBS} glh2 && make -j${FLATPAK_BUILDER_N_JOBS} -C server
+      - cd engine/hexenworld && make -j${FLATPAK_BUILDER_N_JOBS} -C client glhw && make -j${FLATPAK_BUILDER_N_JOBS} -C server
+      - cd hw_utils/hwmaster && make -j${FLATPAK_BUILDER_N_JOBS}
       # Install the executables we've built
       - install -Dm 744 uhexen2.sh -t /app/bin
       - install -D -m755 -t /app/bin/ ./engine/hexen2/glhexen2 ./engine/hexen2/server/h2ded ./engine/hexenworld/client/glhwcl ./engine/hexenworld/server/hwsv hw_utils/hwmaster/hwmaster
